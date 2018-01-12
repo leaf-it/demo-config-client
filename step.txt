@@ -1,0 +1,22 @@
+1.创建项目请参考demo项目
+2.在项目中pom.xml添加
+ <dependency>
+     <groupId>org.springframework.cloud</groupId>
+     <artifactId>spring-cloud-starter-config</artifactId>
+     <version>1.3.3.RELEASE</version>
+ </dependency>
+3.使用时语法${属性名称}，属性文件中可以不写其属性，不过要指明配置服务器。
+   @Value("${hello}")
+      String hello;
+   配置服务器：
+   spring.cloud.config.label=master
+   spring.cloud.config.profile=dev
+   spring.cloud.config.uri= http://localhost:8888/
+4.启动，程序成功，http://localhost:5555/con/hello可测试。例子中eureka和swagger的添加是为了调试使用，如果不注册，可以不使用，做最简版。
+5.遗留问题：controller中添加@@RefreshScope应该是其主动刷新数据的，但实验结果不可以。
+  而且在swagger中查看，也并未见其接口暴露，在此做mark，有时间的时候再检验。
+
+
+
+
+
